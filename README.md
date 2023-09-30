@@ -1,2 +1,2 @@
 # Pwncollege-Cryptography
-My journey completing Pwncollege Intro duction to Cryptography
+My journey completing Pwncollege Introduction to Cryptography
