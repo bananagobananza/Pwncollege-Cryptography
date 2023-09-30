@@ -13,11 +13,7 @@ def encrypt(flag):
 
 flag = b"pwn.college{practice}"
 flag = pad(flag, 16)
-#print(flag)
-secrettext = "J0iSC8HwAILxQRk1vAtXfREysHhTodUsV3SjxB492ZE="
-#encrypt(flag)
-
-flagenc = base64.b64decode(secrettext)
+print(encrypt(flag))
 
 knownflag = ""
 anschar = ""
@@ -31,5 +27,3 @@ for i in range (16):
             anschar += chr(j)
             break
     print(anschar)
-
-print(len("YjjMoT8p9HXlo/aYl0pKwpqKbdO7EhAiXtyYutuFQP"))

@@ -1,1 +1,2 @@
-Basic base64 decoding using import base64
+The problem give you a base64 encoded ciphertext and the key
+you just need to ciphertext ^ key = flag
