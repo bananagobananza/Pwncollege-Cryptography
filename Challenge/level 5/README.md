@@ -1,4 +1,4 @@
-This problem involve know about AES-ECB mode 
+This problem involve knowing about AES-ECB mode 
 
 1st step: the algorithm
 - Basically AES-ECB mode divide the string (in this case flag) into blocks with the length given. (in this problem it is 16)
@@ -7,7 +7,7 @@ This problem involve know about AES-ECB mode
 2nd step: the exploitation
 - In my Crypto5_algorithm.py, assume i have ```key = b"Sup3r_S3cr3t!!!!"``` which is 16 bytes.
 - Assume i have the ```flag = b"pwn.college{practice}"``` after encryption i got ```b'J0iSC8HwAILxQRk1vAtXfREysHhTodUsV3SjxB492ZGfWsThqAId7Xq4EDpFwYEp'```
-- Reading the problemm, it said that i can pad letter i want to the front of the orginal flag, then it will encrypt for us:
+- Reading the problem, it said that i can pad letter i want to the front of the orginal flag, then it will encrypt for us:
 Ex: pad 4 A's to the front pwn.college{practice} -> AAAApwn.college{practice}.
 - Only then it will encrypt. By this, we can bruteforce each letter of the flag. Since the blocksize is 16, we first try to add 15 A's to the front of the flag:
 pwn.college{practice} -> AAAAAAAAAAAAAAApwn.college{practice}.
@@ -36,15 +36,16 @@ we need to find the 17th byte of the flag, after already know the first 16. So w
 to find the 17th byte after sending 15 A's. (the first block is ```AAAAAAAAAAAAAAAp``` and the second is ```wn.college{prac + char(0 -> 255)```)
 - The rest of third, forth, ... block we will do the same.
 
-~Discussion~
+*Discussion*
 1. what happen if we want to pad % 16 != 0 ?
 --> throw no bytes at the end 
-Ex: "Helloworld" -> "Helloworld000000" -> no idea to determine
+Ex: "Helloworld" -> "Helloworld000000" -> no idea to determined
 Solution: Put how much to pad at the end
 Ex: "Helloworld" -> "Helloworld\x06\x06\x06\x06\x06\x06"
 Ex2: print(pad(b"Hello, world!", 16))
 
 2. Can only decrypt 16 bytes at a time (ECB: dealing with 16 bytes chunk)
+```
 plaintext = b"HELLO_World_12345678901234567890"
 ciphertext = cipher.encrypt(plaintext)
 print(plaintext)
@@ -54,7 +55,9 @@ for i in range (2):
 for i in range (2):
     ciphertext = cipher.encrypt(plaintext[16 * i: 16 * (i + 1)])
     print(ciphertext.hex())
+
 ...
+```
 
 3rd step: interactive with server
 - Now the problem does not give us the flag, which me must interact with the server in order to brute force the flag
