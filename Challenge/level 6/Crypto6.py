@@ -13,8 +13,6 @@ B = pow(g, b, p)
 print("b :", b)
 print("B :", B)
 print(hex(B))
-# we provide this
-# B = 0x748b2e349387ac7e865600365df1aa4ad48e58cd73f3c3baee557c213599c5c5062ab8e8cc8488d4cdd0e5d8903cdb1285ae7c8867aa0aa23b47c8e97943a33e27b182def861434e75172a7bac46b900758d1110761d2b4e60b0ebdcae7eab4c94ff7868405506cea9412e36a8394e6785638d3da7bb79645b626ac43fcdfc015ba0ac729b20bc52bc357f198560df6a9c06f687599b2217485de2081d6552b6a00a6bb45c11ef38e1507d1cbef5b5ee45a624074f5ab0365cc42dfb1ca007d0b6a48a3d9625b75e7401317a80b4b6aec2b94631a3d7f32ec5386bd67c32abc066b29c53beacedc6b9c2e053bd7b296ebd095d7418af55ed1b303dd463693f14
 
 secret_ct = "0mLRWzCO8yJIHIOP29d95nHKCyzoLn5qdpDugvdoOTFm9pAlq6FVsWpQ+STr79002oL4zEcX2M0z2A=="
 secret = base64.b64decode(secret_ct)
@@ -22,14 +20,8 @@ print("SECRET :", secret)
 
 s = pow(A, b, p)
 
-# Explain: We are stading in Bob side, which is we have b and g^b in the begining. By having know A
-# we have:
-# flag xor (B ^ a  % p) = flag xor (A ^ b % p) 
-# <=> flag xor (g ^ ba % p) = flag xor (g ^ ab % p) => true
-
 key = s.to_bytes(256, "little")
 print("KEY: ", key)
 print(len(secret), len(key))
 print("ANSWER :", strxor(secret, key[:58]))
 
-#pwn.college{4pCup08YU9Vy57G3H7dvzUWFp5U.dhzNzMDL3UjN2MzW}
