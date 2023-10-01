@@ -16,7 +16,6 @@ user_certificate = {
         "signer": "root", # The code only trust root as signer
     }
 ```
-- Note that the challenge only accept "root" as the signer
 
 After that, we want to sign our certificate
 ```
@@ -30,16 +29,20 @@ user_certificate_signature = pow(
 
 ```
 Note that the signature s is calculate by:
+```
     s = m^d (mod n)
 with: - s: certificate
       - m: our certificate
       - d: we use private key (root key) 
       - n: the modulus provided by the server
+```
 
 After sending our certificate, we obtain the RSA flag encrypted using our e and n.
 The decryption for RSA is:
+```
     m = c^d (mod n)
 with: - m: plaintext need to calculate
       - c: the encrypted RSA of flag
       - d: our private key (generate from the beginning)
       - n: our modulus (generate from the beginning)
+```
